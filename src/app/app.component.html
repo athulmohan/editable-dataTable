@@ -1,0 +1,103 @@
+<form [formGroup]="myForm" (ngSubmit)="save();" novalidate>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ col.label }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
+          <div class="btn-edit" *ngSwitchCase="'isEdit'">
+            <button mat-button (click)="element.isEdit = !element.isEdit">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </div>
+          <span *ngSwitchCase="'number'">
+            {{ element[col.key] }} EUR
+          </span>
+          <span *ngSwitchCase="'date'">
+            {{ element[col.key] | date: 'dd/MM/yyyy' }}
+          </span>
+          <span *ngSwitchDefault>
+            {{ element[col.key] }}
+          </span>
+        </div>
+
+        <div [ngSwitch]="col.type" *ngIf="element.isEdit">
+          <div class="btn-edit" *ngSwitchCase="'isEdit'">
+            <button mat-button (click)="save(element[col.id], element.isEdit, element);">
+              <i class="fa fa-save"></i>
+            </button>
+          </div>
+          <mat-form-field
+            class="form-input"
+            *ngSwitchCase="'number'"
+            appearance="fill"
+          >
+            <input
+              type="text"
+              matInput
+              id="{{ col.key + '_' + element[col.id] }}"
+              formControlName="{{ col.key + '_' + element[col.id] }}"
+              (ngModelChange)="element[col.key] = $event"
+              [ngModel]="element[col.key]"
+            />
+            <span class="currencyFormat">EUR</span>
+            <mat-label>EUR</mat-label>
+          </mat-form-field>
+          <mat-form-field
+            class="form-input"
+            *ngSwitchCase="'date'"
+            appearance="fill"
+          >
+            <mat-label>Choose a date</mat-label>
+            <input
+              matInput
+              id="{{ col.key + '_' + element[col.id] }}"
+              formControlName="{{ col.key + '_' + element[col.id] }}"
+              [matDatepicker]="picker"
+              [(ngModel)]="element[col.key]"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="form-input" *ngSwitchCase="'select'">
+            <input
+              hidden
+              type="text"
+              matInput
+              id="{{ col.key + '_' + element[col.id] }}"
+              formControlName="{{ col.key + '_' + element[col.id] }}"
+              (ngModelChange)="element[col.key] = $event"
+              [ngModel]="element[col.key]"
+            />
+            <select matSelect
+              id="{{ col.key + '_' + element[col.id] }}"
+              formControlName="{{ col.key + '_' + element[col.id] }}"
+              (ngModelChange)="element[col.key] = $event"
+              [ngModel]="element[col.key]"
+            >
+              <option
+                *ngFor="let status of statusData"
+                [value]="status"
+                [selected]="status === element[col.key]"
+              >
+                {{ status }}
+              </option>
+            </select>
+          </mat-form-field>
+          <mat-form-field class="form-input" *ngSwitchDefault>
+            <input [type]="col.type" matInput 
+            id="{{ col.key + '_' + element[col.id] }}" 
+            formControlName="{{ col.key + '_' + element[col.id] }}"
+            [(ngModel)]="element[col.key]" />
+          </mat-form-field>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</form>

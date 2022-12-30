@@ -1,0 +1,104 @@
+p {
+    font-family: Lato;
+  }
+  table {
+    width: 90%;
+    margin: auto;
+    margin-top: 25px;
+  }
+  .btn-edit {
+    text-align: right;
+  }
+  h2 {
+    text-align: center;
+    padding-top: 20px;
+  }
+  
+  .table-header {
+    width: 90%;
+    margin: auto;
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  
+  .button-add-row {
+    background: #1b9e1b;
+    color: #ffffff;
+  }
+  
+  .button-remove-rows {
+    background: red;
+    color: #ffffff;
+    margin-right: 5px;
+  }
+  
+  .button-remove {
+    color: red;
+  }
+  
+  ::ng-deep .mat-form-field-infix {
+    width: 100% !important;
+  }
+  
+  .form-input {
+    padding-right: 5px;
+  }
+  
+  ::ng-deep .mat-table {
+    background: #fff;
+    border: 2px solid;
+    border-bottom: none;
+    border-right: none;
+  }
+
+  ::ng-deep .mat-cell, .mat-footer-cell, .mat-header-cell, td.mat-cell {
+    color: #000;
+    border-bottom-width: 2px;
+    border-right: 2px solid;
+    font-size: 13px;
+  }
+
+  ::ng-deep mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+    border-bottom-color: #000;
+    padding-left: 24px;
+    text-align: center;
+  }
+
+  ::ng-deep .mat-header-cell {
+    font-size: 14px;
+  }
+
+  ::ng-deep .mat-datepicker-content .mat-calendar-next-button, .mat-datepicker-content .mat-calendar-previous-button, .mat-datepicker-toggle {
+    color: #000;
+  }
+
+  ::ng-deep .mat-focus-indicator, .mat-column-isEdit {
+    font-size: 18px;
+    width: 5%;
+  }
+
+  ::ng-deep input.mat-input-element {
+    width: 85%;
+    text-align: center;
+  }
+
+  ::ng-deep .mat-column-status {
+    width: 12%;
+  }
+
+  /* ::ng-deep .mat-column-status .ng-star-inserted {
+    padding: 7px;
+    background-color: lightgreen;
+    border-radius: 5px;
+  } */
+
+  ::ng-deep .mat-column-status select{
+    padding: 7px;
+    border-radius: 5px;
+    /* background-color: lightgreen; */
+    /* border: none; */
+  }
+
+  .error {
+    border-color: #e70022;
+  }
